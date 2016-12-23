@@ -11,8 +11,8 @@ examples =
     , numComponent 42
     -- , rgbColorComponent 0.2 0.7 1.0
     -- , rgbaColorComponent 0.2 0.7 1.0 0.5
-    -- , strListComponent [ "aaa", "bbb", "ccc" ]
-    -- , strListComponent [ "aaa", "bbb", "ccc", "ddd", "eee", "fff", "ggg" ]
+    , stringListComponent [ "aaa", "bbb", "ccc" ]
+    , stringListComponent [ "aaa", "bbb", "ccc", "ddd", "eee", "fff", "ggg" ]
     -- , numListComponent [ 0, 12, 43, 14, 35.5 ]
     -- , numListComponent [ 0, 12, 43, 14, 35.5, 0, 12, 43, 14, 35.5, ]
     -- , hexColorComponent "#6550ff"
