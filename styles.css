@@ -1,0 +1,15 @@
+span.string::before {
+    content: "\""
+}
+
+span.string::after {
+    content: "\""
+}
+
+span.string {
+    color: navy;
+}
+
+span.number {
+    color: green;
+}

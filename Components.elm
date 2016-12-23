@@ -10,6 +10,7 @@ Editors.
 -}
 
 import Html exposing (..)
+import Html.Attributes exposing (..)
 
 {-| Component for a `String`
 
@@ -18,7 +19,7 @@ Usage:
 -}
 stringComponent : String -> Html a
 stringComponent str =
-    span [] [ text str ]
+    span [ class "string" ] [ text str ]
 
 {-| Component for a `String`
 
@@ -27,4 +28,4 @@ Usage:
 -}
 numComponent : Int -> Html a
 numComponent num =
-    span [] [ text (toString num) ]
+    span [ class "number" ] [ text (toString num) ]
