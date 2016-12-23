@@ -5,6 +5,12 @@ import Html.Attributes exposing (..)
 
 import Components exposing (..)
 
+examples : List (Html a)
+examples =
+    [ stringComponent "foo"
+    , numComponent 42
+    ]
+
 stylesheetLink : String -> Html a
 stylesheetLink url =
     node
@@ -17,10 +23,8 @@ stylesheetLink url =
 
 main : Html a
 main =
-  div []
+  div [ class "components" ]
     [ (stylesheetLink "./styles.css")
     , ul []
-        [ li [] [ (stringComponent "foo") ]
-        , li [] [ (numComponent 42) ]
-        ]
+        (List.map (\example -> li [] [ example ]) examples)
     ]

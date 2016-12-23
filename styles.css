@@ -1,15 +1,15 @@
-span.string::before {
+.components .string::before {
     content: "\""
 }
 
-span.string::after {
+.components .string::after {
     content: "\""
 }
 
-span.string {
+.components .string {
     color: navy;
 }
 
-span.number {
+.components .number {
     color: green;
 }
