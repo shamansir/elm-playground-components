@@ -1,3 +1,26 @@
+.components ul {
+    margin: 0;
+    padding: 0;
+}
+
+.components ul li {
+    list-style-type: none;
+    margin: 5px;
+}
+
+.components .string,
+.components .number {
+    background-color: #eee;
+    border-color: #ddd;
+    border-radius: 5px;
+    border-width: 1.5px;
+    border-style: solid;
+    padding: 2px 3px;
+    font-size: 11px;
+    margin: 5px 0;
+    font-family: sans-serif;
+}
+
 .components .string::before {
     content: "\""
 }
