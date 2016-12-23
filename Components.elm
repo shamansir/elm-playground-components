@@ -1,7 +1,10 @@
 module Components exposing
     ( stringComponent
-    , numComponent
+    , intComponent
+    , floatComponent
     , stringListComponent
+    , intListComponent
+    , floatListComponent
     )
 
 {-| This module provides the visual representation
@@ -9,8 +12,12 @@ for different types of values. It could be used in the Playground-like
 Editors.
 
 # List of the available components
-@docs stringComponent, numComponent, stringListComponent
-
+@docs stringComponent
+    , intComponent
+    , floatComponent
+    , stringListComponent
+    , intListComponent
+    , floatListComponent
 -}
 
 import Html exposing (..)
@@ -25,23 +32,50 @@ stringComponent : String -> Html a
 stringComponent str =
     span [ class "string" ] [ text str ]
 
-{-| Component for a `Int`
+{-| Component for an `Int`
 
 Usage:
-    numComponent 42
+    intComponent 42
 -}
-numComponent : Int -> Html a
-numComponent num =
+intComponent : Int -> Html a
+intComponent num =
+    span [ class "number" ] [ text (toString num) ]
+
+{-| Component for a `Float`
+
+Usage:
+    floatComponent 42.2
+-}
+floatComponent : Float -> Html a
+floatComponent num =
     span [ class "number" ] [ text (toString num) ]
 
 {-| Component for a `List String`
 
 Usage:
-    stringListComponent [ "foo" "bar" ]
+    stringListComponent [ "foo", "bar" ]
 -}
 stringListComponent : List String -> Html a
 stringListComponent stringList =
     listOf stringComponent stringList
+
+{-| Component for a `List Int`
+
+Usage:
+    intListComponent [ 10, 12, 15, 55, 60 ]
+-}
+intListComponent : List Int -> Html a
+intListComponent intList =
+    listOf intComponent intList
+
+{-| Component for a `List Float`
+
+Usage:
+    floatListComponent [ 10.1, 12.2, 15.3, 55.4, 60.5, 111 ]
+-}
+floatListComponent : List Float -> Html a
+floatListComponent floatList =
+    listOf floatComponent floatList
 
 listOf : (x -> Html a) -> List x -> Html a
 listOf itemProducer items =

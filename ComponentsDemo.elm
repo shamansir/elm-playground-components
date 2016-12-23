@@ -8,14 +8,15 @@ import Components exposing (..)
 examples : List (Html a)
 examples =
     [ stringComponent "foo"
-    , numComponent 42
+    , intComponent 42
     -- , rgbColorComponent 0.2 0.7 1.0
     -- , rgbaColorComponent 0.2 0.7 1.0 0.5
     , stringListComponent [ "aaa", "bbb", "ccc" ]
     , stringListComponent [ "aaa", "bbb", "ccc", "ddd", "eee", "fff", "ggg" ]
-    -- , numListComponent [ 0, 12, 43, 14, 35.5 ]
-    -- , numListComponent [ 0, 12, 43, 14, 35.5, 0, 12, 43, 14, 35.5, ]
-    -- , hexColorComponent "#6550ff"
+    , intListComponent [ 0, 12, 43, 14, 35 ]
+    , intListComponent [ 0, 12, 43, 14, 35, 0, 12, 43, 14, 35 ]
+    , floatListComponent [ 10.1, 12.2, 15.3, 55.4, 60.5, 111 ]
+    -- , hexColorComponent "#6550int
     -- , hexaColorComponent "#6550ff" 0.5
     -- , plotComponent (\a -> a + 2)
     -- , plot2Component (\a b -> a + b)
