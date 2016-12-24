@@ -23,57 +23,69 @@ Editors.
 import Html exposing (..)
 import Html.Attributes exposing (..)
 
+type alias StringComponentModel = String
+
 {-| Component for a `String`
 
 Usage:
     stringComponent "foobar"
 -}
-stringComponent : String -> Html a
+stringComponent : StringComponentModel -> Html a
 stringComponent str =
     span [ class "string" ] [ text str ]
+
+type alias IntComponentModel = Int
 
 {-| Component for an `Int`
 
 Usage:
     intComponent 42
 -}
-intComponent : Int -> Html a
+intComponent : IntComponentModel -> Html a
 intComponent num =
-    span [ class "number" ] [ text (toString num) ]
+    span [ class "number int" ] [ text (toString num) ]
+
+type alias FloatComponentModel = Float
 
 {-| Component for a `Float`
 
 Usage:
     floatComponent 42.2
 -}
-floatComponent : Float -> Html a
+floatComponent : FloatComponentModel -> Html a
 floatComponent num =
-    span [ class "number" ] [ text (toString num) ]
+    span [ class "number float" ] [ text (toString num) ]
+
+type alias StringListComponentModel = List String
 
 {-| Component for a `List String`
 
 Usage:
     stringListComponent [ "foo", "bar" ]
 -}
-stringListComponent : List String -> Html a
+stringListComponent : StringListComponentModel -> Html a
 stringListComponent stringList =
     listOf stringComponent stringList
+
+type alias IntListComponentModel = List Int
 
 {-| Component for a `List Int`
 
 Usage:
     intListComponent [ 10, 12, 15, 55, 60 ]
 -}
-intListComponent : List Int -> Html a
+intListComponent : IntListComponentModel -> Html a
 intListComponent intList =
     listOf intComponent intList
+
+type alias FloatListComponentModel = List Float
 
 {-| Component for a `List Float`
 
 Usage:
     floatListComponent [ 10.1, 12.2, 15.3, 55.4, 60.5, 111 ]
 -}
-floatListComponent : List Float -> Html a
+floatListComponent : FloatListComponentModel -> Html a
 floatListComponent floatList =
     listOf floatComponent floatList
 
