@@ -41,8 +41,14 @@ stylesheetLink url =
 
 main : Html a
 main =
-  div [ class "components" ]
+  div []
     [ (stylesheetLink "./styles.css")
-    , ul []
-        (List.map (\example -> li [] [ example ]) examples)
+    , div [ class "components" ]
+          [ ul []
+               (List.map (\example -> li [] [ example ]) examples)
+          ]
+    , div [ class "components dark" ]
+          [ ul []
+               (List.map (\example -> li [] [ example ]) examples)
+          ]
     ]
