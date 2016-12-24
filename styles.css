@@ -1,5 +1,4 @@
-.components > ul,
-.components > ul.list-of {
+.components > ul {
     margin: 0;
     padding: 0;
 }
@@ -38,6 +37,23 @@
     color: green;
 }
 
+.components ul.list-of {
+    margin: 0;
+    padding: 0;
+}
+
+.components ul.list-of::before {
+    content: "[";
+}
+
+.components ul.list-of::after {
+    content: "]";
+}
+
+.components ul.list-of > li {
+    display: inline;
+}
+
 .components.dark .string,
 .components.dark .number {
     background-color: rgba(235,235,225,0.9);
@@ -46,4 +62,9 @@
 
 .components.dark {
     background-color: #1d1f21;
+}
+
+.components.dark ul.list-of::before,
+.components.dark ul.list-of::after {
+    color: #eee;
 }
