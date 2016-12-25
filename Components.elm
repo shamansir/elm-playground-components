@@ -5,6 +5,8 @@ module Components exposing
     , stringListComponent
     , intListComponent
     , floatListComponent
+    , stringTuple1Component
+    , stringTuple2Component
     )
 
 {-| This module provides the visual representation
@@ -18,6 +20,8 @@ Editors.
     , stringListComponent
     , intListComponent
     , floatListComponent
+    , stringTuple1Component
+    , stringTuple2Component
 -}
 
 import Html exposing (..)
@@ -91,3 +95,33 @@ listOf : (x -> Html ListMsg) -> List x -> Html ListMsg
 listOf itemProducer items =
     ul [ class "list-of" ]
         (List.map (\item -> li [] [ (itemProducer item) ]) items)
+
+{-| Component for a `(String)`
+
+Usage:
+    stringTuple1Component ("foo")
+-}
+stringTuple1Component : (String) -> Html a
+stringTuple1Component stringTuple1 =
+    tuple1Of stringComponent stringTuple1
+
+{-| Component for a `(String, String)`
+
+Usage:
+    stringTuple2Component ("foo", "bar")
+-}
+stringTuple2Component : (String, String) -> Html a
+stringTuple2Component stringTuple2 =
+    tuple2Of stringComponent stringTuple2
+
+tuple1Of : (x -> Html a) -> (x) -> Html a
+tuple1Of itemProducer (item) =
+    ul [ class "tuple-of" ]
+       [ li [] [ (itemProducer item) ] ]
+
+tuple2Of : (x -> Html a) -> (x, x) -> Html a
+tuple2Of itemProducer (item1, item2) =
+    ul [ class "tuple-of" ]
+        [ li [] [ (itemProducer item1) ]
+        , li [] [ (itemProducer item2) ]
+        ]

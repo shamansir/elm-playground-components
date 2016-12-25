@@ -13,6 +13,8 @@ examples =
     -- , rgbaColorComponent 0.2 0.7 1.0 0.5
     , stringListComponent [ "aaa", "bbb", "ccc" ]
     , stringListComponent [ "aaa", "bbb", "ccc", "ddd", "eee", "fff", "ggg" ]
+    , stringTuple1Component ( "aaa" )
+    , stringTuple2Component ( "aaa", "bbb" )
     , intListComponent [ 0, 12, 43, 14, 35 ]
     , intListComponent [ 0, 12, 43, 14, 35, 0, 12, 43, 14, 35 ]
     , floatListComponent [ 10.1, 12.2, 15.3, 55.4, 60.5, 111 ]

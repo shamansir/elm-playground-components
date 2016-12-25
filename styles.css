@@ -37,9 +37,11 @@
     color: green;
 }
 
-.components ul.list-of {
+.components ul.list-of,
+.components ul.tuple-of {
     margin: 0;
     padding: 0;
+
 }
 
 .components ul.list-of::before {
@@ -50,7 +52,16 @@
     content: "]";
 }
 
-.components ul.list-of > li {
+.components ul.tuple-of::before {
+    content: "[";
+}
+
+.components ul.tuple-of::after {
+    content: "]";
+}
+
+.components ul.list-of > li,
+.components ul.tuple-of > li {
     display: inline;
 }
 
@@ -65,6 +76,8 @@
 }
 
 .components.dark ul.list-of::before,
-.components.dark ul.list-of::after {
+.components.dark ul.tuple-of::before,
+.components.dark ul.list-of::after,
+.components.dark ul.tuple-of::after {
     color: #eee;
 }
