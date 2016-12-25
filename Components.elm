@@ -1,12 +1,12 @@
 module Components exposing
-    ( stringComponent
-    , intComponent
-    , floatComponent
-    , stringListComponent
-    , intListComponent
-    , floatListComponent
-    , stringTuple1Component
-    , stringTuple2Component
+    ( displayString
+    , displayInt
+    , displayFloat
+    , displayStringList
+    , displayIntList
+    , displayFloatList
+    , displayStringTuple1
+    , displayStringTuple2
     )
 
 {-| This module provides the visual representation
@@ -14,14 +14,14 @@ for different types of values. It could be used in the Playground-like
 Editors.
 
 # List of the available components
-@docs stringComponent
-    , intComponent
-    , floatComponent
-    , stringListComponent
-    , intListComponent
-    , floatListComponent
-    , stringTuple1Component
-    , stringTuple2Component
+@docs displayString
+    , displayInt
+    , displayFloat
+    , displayStringList
+    , displayIntList
+    , displayFloatList
+    , displayStringTuple1
+    , displayStringTuple2
 -}
 
 import Html exposing (..)
@@ -30,28 +30,28 @@ import Html.Attributes exposing (..)
 {-| Component for a `String`
 
 Usage:
-    stringComponent "foobar"
+    displayString "foobar"
 -}
-stringComponent : String -> Html a
-stringComponent str =
+displayString : String -> Html a
+displayString str =
     span [ class "string" ] [ text str ]
 
 {-| Component for an `Int`
 
 Usage:
-    intComponent 42
+    displayInt 42
 -}
-intComponent : Int -> Html a
-intComponent num =
+displayInt : Int -> Html a
+displayInt num =
     span [ class "number int" ] [ text (toString num) ]
 
 {-| Component for a `Float`
 
 Usage:
-    floatComponent 42.2
+    displayFloat 42.2
 -}
-floatComponent : Float -> Html a
-floatComponent num =
+displayFloat : Float -> Html a
+displayFloat num =
     span [ class "number float" ] [ text (toString num) ]
 
 type alias ListModel x = (List x, Bool)
@@ -67,29 +67,29 @@ listUpdate msg (list, expanded) =
 {-| Component for a `List String`
 
 Usage:
-    stringListComponent [ "foo", "bar" ]
+    displayStringList [ "foo", "bar" ]
 -}
-stringListComponent : ListModel String -> Html ListMsg
-stringListComponent (stringList, expanded) =
-    listOf stringComponent stringList
+displayStringList : ListModel String -> Html ListMsg
+displayStringList (stringList, expanded) =
+    listOf displayString stringList
 
 {-| Component for a `List Int`
 
 Usage:
-    intListComponent [ 10, 12, 15, 55, 60 ]
+    displayIntList [ 10, 12, 15, 55, 60 ]
 -}
-intListComponent : ListModel Int -> Html ListMsg
-intListComponent (intList, expaned) =
-    listOf intComponent intList
+displayIntList : ListModel Int -> Html ListMsg
+displayIntList (intList, expaned) =
+    listOf displayInt intList
 
 {-| Component for a `List Float`
 
 Usage:
-    floatListComponent [ 10.1, 12.2, 15.3, 55.4, 60.5, 111 ]
+    displayFloatList [ 10.1, 12.2, 15.3, 55.4, 60.5, 111 ]
 -}
-floatListComponent : ListModel Float -> Html ListMsg
-floatListComponent (floatList, expanded) =
-    listOf floatComponent floatList
+displayFloatList : ListModel Float -> Html ListMsg
+displayFloatList (floatList, expanded) =
+    listOf displayFloat floatList
 
 listOf : (x -> Html ListMsg) -> List x -> Html ListMsg
 listOf itemProducer items =
@@ -99,20 +99,20 @@ listOf itemProducer items =
 {-| Component for a `(String)`
 
 Usage:
-    stringTuple1Component ("foo")
+    displayStringTuple1 ("foo")
 -}
-stringTuple1Component : (String) -> Html a
-stringTuple1Component stringTuple1 =
-    tuple1Of stringComponent stringTuple1
+displayStringTuple1 : (String) -> Html a
+displayStringTuple1 stringTuple1 =
+    tuple1Of displayString stringTuple1
 
 {-| Component for a `(String, String)`
 
 Usage:
-    stringTuple2Component ("foo", "bar")
+    displayStringTuple1 ("foo", "bar")
 -}
-stringTuple2Component : (String, String) -> Html a
-stringTuple2Component stringTuple2 =
-    tuple2Of stringComponent stringTuple2
+displayStringTuple2 : (String, String) -> Html a
+displayStringTuple2 stringTuple2 =
+    tuple2Of displayString stringTuple2
 
 tuple1Of : (x -> Html a) -> (x) -> Html a
 tuple1Of itemProducer (item) =
