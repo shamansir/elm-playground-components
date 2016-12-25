@@ -5,7 +5,7 @@ import Html.Attributes exposing (..)
 
 import Components exposing (..)
 
-examples : List (Html a)
+examples : List (Html ComponentMsg)
 examples =
     [ displayString "foo"
     , displayInt 42
@@ -13,13 +13,13 @@ examples =
     -- , displayColor (RGBA 0.2 0.7 1.0 0.5)
     -- , displayColor (Hex "#6550ff)
     -- , displayColor (HexWithAlpha "#6550ff 0.5)
-    , displayStringList [ "aaa", "bbb", "ccc" ]
-    , displayStringList [ "aaa", "bbb", "ccc", "ddd", "eee", "fff", "ggg" ]
+    , displayStringList ([ "aaa", "bbb", "ccc" ], True)
+    , displayStringList ([ "aaa", "bbb", "ccc", "ddd", "eee", "fff", "ggg" ], True)
     , displayStringTuple1 ( "aaa" )
     , displayStringTuple2 ( "aaa", "bbb" )
-    , displayIntList [ 0, 12, 43, 14, 35 ]
-    , displayIntList [ 0, 12, 43, 14, 35, 0, 12, 43, 14, 35 ]
-    , displayFloatList [ 10.1, 12.2, 15.3, 55.4, 60.5, 111 ]
+    , displayIntList ([ 0, 12, 43, 14, 35 ], True)
+    , displayIntList ([ 0, 12, 43, 14, 35, 0, 12, 43, 14, 35 ], True)
+    , displayFloatList ([ 10.1, 12.2, 15.3, 55.4, 60.5, 111 ], True)
     -- , displayPlot (List.map (List.range 0 10) (\x -> x + 2))
     --               (List.map (List.range 0 10) (\y -> y * 2))
     -- , displayType (VarType "a")
@@ -40,7 +40,7 @@ stylesheetLink url =
         ]
         []
 
-main : Html a
+main : Html ComponentMsg
 main =
   div []
     [ (stylesheetLink "./styles.css")

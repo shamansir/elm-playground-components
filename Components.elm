@@ -7,6 +7,7 @@ module Components exposing
     , displayFloatList
     , displayStringTuple1
     , displayStringTuple2
+    , ComponentMsg
     )
 
 {-| This module provides the visual representation
@@ -22,17 +23,22 @@ Editors.
     , displayFloatList
     , displayStringTuple1
     , displayStringTuple2
+    , ComponentMsg
 -}
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+
+{-| This message is sent between components
+-}
+type ComponentMsg = ListMsg | Nothing
 
 {-| Component for a `String`
 
 Usage:
     displayString "foobar"
 -}
-displayString : String -> Html a
+displayString : String -> Html ComponentMsg
 displayString str =
     span [ class "string" ] [ text str ]
 
@@ -41,7 +47,7 @@ displayString str =
 Usage:
     displayInt 42
 -}
-displayInt : Int -> Html a
+displayInt : Int -> Html ComponentMsg
 displayInt num =
     span [ class "number int" ] [ text (toString num) ]
 
@@ -50,7 +56,7 @@ displayInt num =
 Usage:
     displayFloat 42.2
 -}
-displayFloat : Float -> Html a
+displayFloat : Float -> Html ComponentMsg
 displayFloat num =
     span [ class "number float" ] [ text (toString num) ]
 
@@ -69,7 +75,7 @@ listUpdate msg (list, expanded) =
 Usage:
     displayStringList [ "foo", "bar" ]
 -}
-displayStringList : ListModel String -> Html ListMsg
+displayStringList : ListModel String -> Html ComponentMsg
 displayStringList (stringList, expanded) =
     listOf displayString stringList
 
@@ -78,7 +84,7 @@ displayStringList (stringList, expanded) =
 Usage:
     displayIntList [ 10, 12, 15, 55, 60 ]
 -}
-displayIntList : ListModel Int -> Html ListMsg
+displayIntList : ListModel Int -> Html ComponentMsg
 displayIntList (intList, expaned) =
     listOf displayInt intList
 
@@ -87,11 +93,11 @@ displayIntList (intList, expaned) =
 Usage:
     displayFloatList [ 10.1, 12.2, 15.3, 55.4, 60.5, 111 ]
 -}
-displayFloatList : ListModel Float -> Html ListMsg
+displayFloatList : ListModel Float -> Html ComponentMsg
 displayFloatList (floatList, expanded) =
     listOf displayFloat floatList
 
-listOf : (x -> Html ListMsg) -> List x -> Html ListMsg
+listOf : (x -> Html ComponentMsg) -> List x -> Html ComponentMsg
 listOf itemProducer items =
     ul [ class "list-of" ]
         (List.map (\item -> li [] [ (itemProducer item) ]) items)
@@ -101,7 +107,7 @@ listOf itemProducer items =
 Usage:
     displayStringTuple1 ("foo")
 -}
-displayStringTuple1 : (String) -> Html a
+displayStringTuple1 : (String) -> Html ComponentMsg
 displayStringTuple1 stringTuple1 =
     tuple1Of displayString stringTuple1
 
@@ -110,16 +116,16 @@ displayStringTuple1 stringTuple1 =
 Usage:
     displayStringTuple1 ("foo", "bar")
 -}
-displayStringTuple2 : (String, String) -> Html a
+displayStringTuple2 : (String, String) -> Html ComponentMsg
 displayStringTuple2 stringTuple2 =
     tuple2Of displayString stringTuple2
 
-tuple1Of : (x -> Html a) -> (x) -> Html a
+tuple1Of : (x -> Html ComponentMsg) -> (x) -> Html ComponentMsg
 tuple1Of itemProducer (item) =
     ul [ class "tuple-of" ]
        [ li [] [ (itemProducer item) ] ]
 
-tuple2Of : (x -> Html a) -> (x, x) -> Html a
+tuple2Of : (x -> Html ComponentMsg) -> (x, x) -> Html ComponentMsg
 tuple2Of itemProducer (item1, item2) =
     ul [ class "tuple-of" ]
         [ li [] [ (itemProducer item1) ]

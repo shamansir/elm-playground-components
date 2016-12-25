@@ -53,11 +53,11 @@
 }
 
 .components ul.tuple-of::before {
-    content: "[";
+    content: "(";
 }
 
 .components ul.tuple-of::after {
-    content: "]";
+    content: ")";
 }
 
 .components ul.list-of > li,
