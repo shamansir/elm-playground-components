@@ -6,6 +6,7 @@ module Components exposing
     , displayStringList
     , displayIntList
     , displayFloatList
+    , displayColorList
     , displayStringTuple1
     , displayStringTuple2
     , ComponentMsg
@@ -27,6 +28,7 @@ Editors.
     , displayStringList
     , displayIntList
     , displayFloatList
+    , displayColorList
     , displayStringTuple1
     , displayStringTuple2
     , ComponentMsg
@@ -76,7 +78,7 @@ type alias ListModel x = (List x, Bool)
 
 -- # Colors
 
-type ColorType =
+type Color =
       RGB Int Int Int
     | RGBA Int Int Int Float
     | Hex String
@@ -84,14 +86,14 @@ type ColorType =
 
 {-| Create a color using RGB parts: (rgb 0.5 1.0 1.0)
 -}
-rgb : Float -> Float -> Float -> ColorType
+rgb : Float -> Float -> Float -> Color
 rgb r g b = RGB (floor (r * 255))
                 (floor (g * 255))
                 (floor (b * 255))
 
 {-| Create a color using RGBA parts: (rgba 0.5 1.0 1.0 0.5)
 -}
-rgba : Float -> Float -> Float -> Float -> ColorType
+rgba : Float -> Float -> Float -> Float -> Color
 rgba r g b a = RGBA (floor (r * 255))
                     (floor (g * 255))
                     (floor (b * 255))
@@ -99,15 +101,15 @@ rgba r g b a = RGBA (floor (r * 255))
 
 {-| Create a color using Hex String: (hex "#80ffff")
 -}
-hex : String -> ColorType
+hex : String -> Color
 hex hexStr = Hex hexStr
 
 {-| Create a color using Hex String with aplha: (hexa "#80ffff" 0.5)
 -}
-hexa : String -> Float -> ColorType
+hexa : String -> Float -> Color
 hexa hexStr a = HexWithAlpha hexStr 1.0
 
-{-| Component for a `ColorType`
+{-| Component for a `Color`
 
 Usage:
     displayColor (rgb 0.5 1.0 1.0)
@@ -115,7 +117,7 @@ Usage:
     displayColor (hex "#80ffff")
     displayColor (hexa "#80ffff" 0.5)
 -}
-displayColor : ColorType -> Html ComponentMsg
+displayColor : Color -> Html ComponentMsg
 displayColor color =
     let
         colorStr =
@@ -172,6 +174,21 @@ Usage:
 displayFloatList : ListModel Float -> Html ComponentMsg
 displayFloatList (floatList, expanded) =
     listOf displayFloat floatList
+
+{-| Component for a `List Color`
+
+Usage:
+    displayColorList [ rgb 0.25 0.5 0.75
+                     , rgb 0.75 0.5 0.25
+                     , rgba 0.25 0.5 0.75 0.5
+                     , rgba 0.75 0.5 0.25 0.5
+                     , hex "#ff8080"
+                     , hexa "#ff8080" 0.5
+                     ]
+-}
+displayColorList : ListModel Color -> Html ComponentMsg
+displayColorList (colorList, expanded) =
+    listOf displayColor colorList
 
 listOf : (x -> Html ComponentMsg) -> List x -> Html ComponentMsg
 listOf itemProducer items =

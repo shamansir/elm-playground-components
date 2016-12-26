@@ -20,6 +20,13 @@ examples =
     , displayIntList ([ 0, 12, 43, 14, 35 ], True)
     , displayIntList ([ 0, 12, 43, 14, 35, 0, 12, 43, 14, 35 ], True)
     , displayFloatList ([ 10.1, 12.2, 15.3, 55.4, 60.5, 111 ], True)
+    , displayColorList ([ rgb 0.25 0.5 0.75
+                        , rgb 0.75 0.5 0.25
+                        , rgba 0.25 0.5 0.75 0.5
+                        , rgba 0.75 0.5 0.25 0.5
+                        , hex "#ff8080"
+                        , hexa "#ff8080" 0.5
+                        ], True)
     -- , displayPlot (List.map (List.range 0 10) (\x -> x + 2))
     --               (List.map (List.range 0 10) (\y -> y * 2))
     -- , displayType (VarType "a")
