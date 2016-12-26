@@ -77,20 +77,25 @@ type alias ListModel x = (List x, Bool)
 -- # Colors
 
 type ColorType =
-      RGB Float Float Float
-    | RGBA Float Float Float Float
+      RGB Int Int Int
+    | RGBA Int Int Int Float
     | Hex String
     | HexWithAlpha String Float
 
 {-| Create a color using RGB parts: (rgb 0.5 1.0 1.0)
 -}
 rgb : Float -> Float -> Float -> ColorType
-rgb r g b = RGB r g b
+rgb r g b = RGB (floor (r * 255))
+                (floor (g * 255))
+                (floor (b * 255))
 
 {-| Create a color using RGBA parts: (rgba 0.5 1.0 1.0 0.5)
 -}
 rgba : Float -> Float -> Float -> Float -> ColorType
-rgba r g b a = RGBA r g b a
+rgba r g b a = RGBA (floor (r * 255))
+                    (floor (g * 255))
+                    (floor (b * 255))
+                    a
 
 {-| Create a color using Hex String: (hex "#80ffff")
 -}
@@ -115,14 +120,14 @@ displayColor color =
     let
         colorStr =
             case color of
-                RGB r g b -> "rgb(" ++ (toString (r * 255))
-                             ++ "," ++ (toString (g * 255))
-                             ++ "," ++ (toString (b * 255))
+                RGB r g b -> "rgb(" ++ (toString r)
+                             ++ "," ++ (toString g)
+                             ++ "," ++ (toString b)
                              ++ ")"
-                RGBA r g b a -> "rgba(" ++ (toString (r * 255))
-                                 ++ "," ++ (toString (g * 255))
-                                 ++ "," ++ (toString (b * 255))
-                                 ++ "," ++ (toString (a * 255))
+                RGBA r g b a -> "rgba(" ++ (toString r)
+                                 ++ "," ++ (toString g)
+                                 ++ "," ++ (toString b)
+                                 ++ "," ++ (toString a)
                                  ++ ")"
                 Hex hexStr -> hexStr
                 HexWithAlpha hexStr a -> hexStr

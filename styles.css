@@ -11,12 +11,12 @@
 .components .string,
 .components .number {
     background-color: #eee;
-    border-color: #ddd;
 }
 
 .components .string,
 .components .number,
 .components .color {
+    border-color: #ddd;
     border-radius: 5px;
     border-width: 1.5px;
     border-style: solid;
@@ -45,7 +45,9 @@
 .components .color {
     display: inline-block;
     width: 10px;
-    height: 10px;
+    height: 12px;
+    border-width: 1px;
+    margin: 5px 0 0 0;
 }
 
 .components ul.list-of,

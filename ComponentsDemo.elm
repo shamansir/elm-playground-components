@@ -11,7 +11,7 @@ examples =
     , displayInt 42
     , displayColor (rgb 0.2 0.7 1.0)
     , displayColor (rgba 0.2 0.7 1.0 0.5)
-    , displayColor (hex "#6550ff")
+    , displayColor (hex "#6650ff")
     , displayColor (hexa "#6550ff" 0.5)
     , displayStringList ([ "aaa", "bbb", "ccc" ], True)
     , displayStringList ([ "aaa", "bbb", "ccc", "ddd", "eee", "fff", "ggg" ], True)
