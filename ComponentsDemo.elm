@@ -9,10 +9,10 @@ examples : List (Html ComponentMsg)
 examples =
     [ displayString "foo"
     , displayInt 42
-    -- , displayColor (RGB 0.2 0.7 1.0)
-    -- , displayColor (RGBA 0.2 0.7 1.0 0.5)
-    -- , displayColor (Hex "#6550ff)
-    -- , displayColor (HexWithAlpha "#6550ff 0.5)
+    , displayColor (rgb 0.2 0.7 1.0)
+    , displayColor (rgba 0.2 0.7 1.0 0.5)
+    , displayColor (hex "#6550ff")
+    , displayColor (hexa "#6550ff" 0.5)
     , displayStringList ([ "aaa", "bbb", "ccc" ], True)
     , displayStringList ([ "aaa", "bbb", "ccc", "ddd", "eee", "fff", "ggg" ], True)
     , displayStringTuple1 ( "aaa" )

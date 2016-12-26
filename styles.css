@@ -12,6 +12,11 @@
 .components .number {
     background-color: #eee;
     border-color: #ddd;
+}
+
+.components .string,
+.components .number,
+.components .color {
     border-radius: 5px;
     border-width: 1.5px;
     border-style: solid;
@@ -35,6 +40,12 @@
 
 .components .number {
     color: green;
+}
+
+.components .color {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
 }
 
 .components ul.list-of,

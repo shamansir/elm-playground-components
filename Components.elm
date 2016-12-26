@@ -2,12 +2,17 @@ module Components exposing
     ( displayString
     , displayInt
     , displayFloat
+    , displayColor
     , displayStringList
     , displayIntList
     , displayFloatList
     , displayStringTuple1
     , displayStringTuple2
     , ComponentMsg
+    , rgb
+    , rgba
+    , hex
+    , hexa
     )
 
 {-| This module provides the visual representation
@@ -18,12 +23,17 @@ Editors.
 @docs displayString
     , displayInt
     , displayFloat
+    , displayColor
     , displayStringList
     , displayIntList
     , displayFloatList
     , displayStringTuple1
     , displayStringTuple2
     , ComponentMsg
+    , rgb
+    , rgba
+    , hex
+    , hexa
 -}
 
 import Html exposing (..)
@@ -32,6 +42,8 @@ import Html.Attributes exposing (..)
 {-| This message is sent between components
 -}
 type ComponentMsg = ListMsg | Nothing
+
+-- # Primitives
 
 {-| Component for a `String`
 
@@ -61,6 +73,65 @@ displayFloat num =
     span [ class "number float" ] [ text (toString num) ]
 
 type alias ListModel x = (List x, Bool)
+
+-- # Colors
+
+type ColorType =
+      RGB Float Float Float
+    | RGBA Float Float Float Float
+    | Hex String
+    | HexWithAlpha String Float
+
+{-| Create a color using RGB parts: (rgb 0.5 1.0 1.0)
+-}
+rgb : Float -> Float -> Float -> ColorType
+rgb r g b = RGB r g b
+
+{-| Create a color using RGBA parts: (rgba 0.5 1.0 1.0 0.5)
+-}
+rgba : Float -> Float -> Float -> Float -> ColorType
+rgba r g b a = RGBA r g b a
+
+{-| Create a color using Hex String: (hex "#80ffff")
+-}
+hex : String -> ColorType
+hex hexStr = Hex hexStr
+
+{-| Create a color using Hex String with aplha: (hexa "#80ffff" 0.5)
+-}
+hexa : String -> Float -> ColorType
+hexa hexStr a = HexWithAlpha hexStr 1.0
+
+{-| Component for a `ColorType`
+
+Usage:
+    displayColor (rgb 0.5 1.0 1.0)
+    displayColor (rgba 0.5 1.0 1.0 0.5)
+    displayColor (hex "#80ffff")
+    displayColor (hexa "#80ffff" 0.5)
+-}
+displayColor : ColorType -> Html ComponentMsg
+displayColor color =
+    let
+        colorStr =
+            case color of
+                RGB r g b -> "rgb(" ++ (toString (r * 255))
+                             ++ "," ++ (toString (g * 255))
+                             ++ "," ++ (toString (b * 255))
+                             ++ ")"
+                RGBA r g b a -> "rgba(" ++ (toString (r * 255))
+                                 ++ "," ++ (toString (g * 255))
+                                 ++ "," ++ (toString (b * 255))
+                                 ++ "," ++ (toString (a * 255))
+                                 ++ ")"
+                Hex hexStr -> hexStr
+                HexWithAlpha hexStr a -> hexStr
+    in
+        span [ style [ ( "backgroundColor", colorStr ) ]
+             , class "color" ]
+             [ ]
+
+-- # Lists
 
 type ListMsg = Expand | Collapse
 
@@ -101,6 +172,8 @@ listOf : (x -> Html ComponentMsg) -> List x -> Html ComponentMsg
 listOf itemProducer items =
     ul [ class "list-of" ]
         (List.map (\item -> li [] [ (itemProducer item) ]) items)
+
+-- # Tuples
 
 {-| Component for a `(String)`
 
