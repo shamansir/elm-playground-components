@@ -32,9 +32,19 @@ examples =
     -- , displayType (VarType "a")
     -- , displayType (Lambda "a" "b")
     -- , displayType (typeFromString "a -> b")
-    -- , displayHtml (ul [ li [] [] ])
+    , displayHtml (ul [] [ li [] [ span [] [ text "Hello!" ] ] ])
     -- , displaySvg (circle [r 10])
     -- , displaySvg (path [d "M10 10 L 20 20"] [])
+    -- , displayHtmlList
+    --     [ ul [] [ ]
+    --     , h1 [] [ text "Foobar" ]
+    --     , h2 [] [ text "H2" ]
+    --     ]
+    -- , displaySvgList
+    --     [ (ul [ li [] [ span [] [ text "Hello!" ] ] ])
+    --     , (h1 [] [ text "Foobar" ])
+    --     , (h2 [] [ text "H2" ])
+    --     ]
     ]
 
 stylesheetLink : String -> Html a

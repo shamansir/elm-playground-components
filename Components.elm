@@ -3,6 +3,7 @@ module Components exposing
     , displayInt
     , displayFloat
     , displayColor
+    , displayHtml
     , displayStringList
     , displayIntList
     , displayFloatList
@@ -25,6 +26,7 @@ Editors.
     , displayInt
     , displayFloat
     , displayColor
+    , displayHtml
     , displayStringList
     , displayIntList
     , displayFloatList
@@ -138,6 +140,17 @@ displayColor color =
              , class "color" ]
              [ ]
 
+-- # Html
+
+{-| Component for a `Html a`
+
+Usage:
+    displayHtml (span [] [ text "Hello" ])
+-}
+displayHtml : Html ComponentMsg -> Html ComponentMsg
+displayHtml html =
+    div [ class "html" ] [ html ]
+
 -- # Lists
 
 type ListMsg = Expand | Collapse
@@ -189,6 +202,18 @@ Usage:
 displayColorList : ListModel Color -> Html ComponentMsg
 displayColorList (colorList, expanded) =
     listOf displayColor colorList
+
+{-| Component for a `List (Html a)`
+
+Usage:
+    displayHtmlList [ h1 [] [ text "H1" ]
+                    , h2 [] [ text "H2" ]
+                    , h3 [] [ text "H3" ]
+                    ]
+-}
+-- displayHtmlList : ListModel (Html ComponentMsg) -> Html ComponentMsg
+-- displayHtmlList (htmlList, expanded) =
+--     listOf displayHtml htmlList
 
 listOf : (x -> Html ComponentMsg) -> List x -> Html ComponentMsg
 listOf itemProducer items =
